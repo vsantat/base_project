@@ -12,7 +12,7 @@ public class WebApplication extends JbossApplication {
 
 	@Override
 	public void init() {
-		// TODO Auto-generated method stub
+		// TODO Add application initialization rutines here!
 		
 	}
 
