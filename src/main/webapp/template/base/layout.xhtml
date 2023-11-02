@@ -1,74 +1,172 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
-	<c:set var="root" value="#{request.contextPath}" />
-	<!-- Basic -->
-	<meta charset="UTF-8" />
-	<title></title>
-	<meta name="description" content="Template application" />
-	<meta name="author" content="www.ingenia.io" />
-	<!-- Mobile Metas -->
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-	<!-- Styles -->
-	<h:outputStylesheet library="webjars" name="primeflex/3.3.1/primeflex.min.css" />
-	<ui:insert name="header" />
+  <c:set var="root" value="#{request.contextPath}" />
+  <!-- Basic -->
+  <meta charset="UTF-8" />
+  <title></title>
+  <meta name="description" content="Template application" />
+  <meta name="author" content="Victor Santa Cruz" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <!-- Styles -->
+  <h:outputStylesheet library="webjars" name="primeflex/3.3.1/primeflex.min.css" />
+
+  <link rel="stylesheet" href="#{root}/template/base/css/style.css" />
+  <ui:insert name="header" />
 </h:head>
 <h:body>
-	<p:ajaxStatus onstart="$('#loader').show()" onsuccess="setTimeout(function(){$('#loader').hide()}, 300);" />
-	<img id="loader" src="#{root}/template/base/img/loader.gif" class="loader" style="display: none;" />
-	<p:growl id="messages" showDetail="true" closable="true" globalOnly="true">
-		<p:autoUpdate />
-	</p:growl>
-	<!-- Menu -->
-	<ul class="menu">
-		<li title="home">
-			<a href="#" class="menu-button home">
-				<i class="pi pi-ellipsis-v"></i>
-			</a>
-		</li>
-		<li title="Inicio">
-			<p:link outcome="/index.xhtml">
-				<i class="pi pi-home"></i>
-			</p:link>
-		</li>
-		<li title="about" class="about">
-			<h:outputText value="Template application" />
-			<i>
-				<h:outputText value="V0.0.1" />
-			</i>
-		</li>
-	</ul>
-	<h:form>
-		<ul class="menu-bar">
-			<li>
-				<a href="#" class="menu-button">Menu</a>
-			</li>
-		</ul>
-	</h:form>
-	<div class="header grid" style="margin: 0px;">
-		<div class="col">
-			<h2 style="margin-top: 4px;">
-				<h:outputText value="Template application" />
-			</h2>
-		</div>
-	</div>
-	<main>
-		<!-- The page -->
-		<!-- Content goes here -->
-		<ui:insert name="content">
-			<h:outputText value="El contenido no esta definido" />
-		</ui:insert>
-	</main>
-	<h:form prependId="false">
-		<p:ajaxExceptionHandler type="java.lang.Exception" update="exceptionDialog" onexception="PF('exceptionDialog').show()" />
-		<p:dialog id="exceptionDialog" header="Exception '#{pfExceptionHandler.type}' occured!" widgetVar="exceptionDialog" height="500px" modal="true">
-			<p:button value="Regresar" outcome="/index.xhtml" />
-			<br />
-            Message: #{pfExceptionHandler.message} <br />
-            StackTrace: <h:outputText value="#{pfExceptionHandler.formattedStackTrace}" escape="false" />
-			<br />
-			<p:button onclick="document.location.href = document.location.href;" value="Reload!" rendered="#{pfExceptionHandler.type == 'javax.faces.application.ViewExpiredException'}" />
-		</p:dialog>
-	</h:form>
+
+
+
+  <!-- navbar -->
+  <nav class="navbar">
+    <div class="logo_item">
+      <i class="pi pi-bars" id="sidebarOpen"></i>
+      <img src="#{root}/template/base/images/logo.png" alt="" />
+      <h:outputText value="Santa Cruz" />
+    </div>
+
+
+    <div class="navbar_content">
+      <i class='pi pi-sun' id="darkLight"></i>
+      <i class='pi pi-bell'></i>
+      <img src="#{root}/template/base/images/profile.png" alt="" class="profile" />
+    </div>
+  </nav>
+
+  <!-- sidebar -->
+  <nav class="sidebar">
+    <div class="menu_content">
+      <ul class="menu_items">
+        <div class="menu_title menu_dahsboard"></div>
+        <!-- duplicate or remove this li tag if you want to add or remove navlink with submenu -->
+        <!-- start -->
+        <li class="item">
+          <div href="#" class="nav_link submenu_item">
+            <span class="navlink_icon">
+              <i class="pi pi-home"></i>
+            </span>
+            <span class="navlink">Home</span>
+            <i class="pi pi-chevron-right arrow-left"></i>
+          </div>
+
+          <ul class="menu_items submenu">
+            <a href="#" class="nav_link sublink">Nav Sub Link</a>
+
+          </ul>
+        </li>
+        <!-- end -->
+
+        <!-- duplicate this li tag if you want to add or remove  navlink with submenu -->
+        <!-- start -->
+        <li class="item">
+          <div href="#" class="nav_link submenu_item">
+            <span class="navlink_icon">
+              <i class="pi pi-th-large"></i>
+            </span>
+            <span class="navlink">Overview</span>
+            <i class="pi pi-chevron-right arrow-left"></i>
+          </div>
+
+          <ul class="menu_items submenu">
+            <a href="#" class="nav_link sublink">Nav Sub Link</a>
+          </ul>
+        </li>
+        <!-- end -->
+      </ul>
+
+      <ul class="menu_items">
+        <div class="menu_title menu_editor"></div>
+        <!-- duplicate these li tag if you want to add or remove navlink only -->
+        <!-- Start -->
+        <li class="item">
+          <a href="#" class="nav_link">
+            <span class="navlink_icon">
+              <i class="pi pi-star-fill"></i>
+            </span>
+            <span class="navlink">Magic build</span>
+          </a>
+        </li>
+        <!-- End -->
+
+        <li class="item">
+          <a href="#" class="nav_link">
+            <span class="navlink_icon">
+              <i class="pi pi-filter-fill"></i>
+            </span>
+            <span class="navlink">Filter</span>
+          </a>
+        </li>
+        <li class="item">
+          <a href="#" class="nav_link">
+            <span class="navlink_icon">
+              <i class="pi pi-upload"></i>
+            </span>
+            <span class="navlink">Upload new</span>
+          </a>
+        </li>
+      </ul>
+      <ul class="menu_items">
+        <div class="menu_title menu_setting"></div>
+        <li class="item">
+          <a href="#" class="nav_link">
+            <span class="navlink_icon">
+              <i class="pi pi-compass"></i>
+            </span>
+            <span class="navlink">Notice board</span>
+          </a>
+        </li>
+
+        <li class="item">
+          <a href="#" class="nav_link">
+            <span class="navlink_icon">
+              <i class="pi pi-cog"></i>
+            </span>
+            <span class="navlink">Setting</span>
+          </a>
+        </li>
+
+      </ul>
+
+      <!-- Sidebar Open / Close -->
+      <div class="bottom_content">
+        <div class="bottom expand_sidebar">
+          <span> Expand</span>
+          <i class='pi pi-sign-in'></i>
+        </div>
+        <div class="bottom collapse_sidebar">
+          <span> Collapse</span>
+          <i class='pi pi-sign-out'></i>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="content">
+    <!-- The page -->
+    <!-- Content goes here -->
+    <ui:insert name="content">
+      <h:outputText value="El contenido no esta definido" />
+    </ui:insert>
+  </main>
+
+  <h:form prependId="false">
+    <p:ajaxExceptionHandler type="java.lang.Exception" update="exceptionDialog" onexception="PF('exceptionDialog').show()" />
+    <p:dialog id="exceptionDialog" header="Exception '#{pfExceptionHandler.type}' occured!" widgetVar="exceptionDialog" height="500px" modal="true">
+      <p:button value="Regresar" outcome="/index.xhtml" />
+      <br />
+      <h:outputText value="#Message: #{pfExceptionHandler.message}" />
+      <br />
+      <h:outputText value="StackTrace:  #{pfExceptionHandler.formattedStackTrace}" escape="false" />
+      <br />
+      <p:button onclick="document.location.href = document.location.href;" value="Reload!" rendered="#{pfExceptionHandler.type == 'javax.faces.application.ViewExpiredException'}" />
+    </p:dialog>
+  </h:form>
+
+  <!-- JavaScript -->
+  <script src="#{root}/template/base/js/script.js"></script>
+
+
 </h:body>
 </html>
